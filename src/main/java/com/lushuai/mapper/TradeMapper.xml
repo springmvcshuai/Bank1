@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lushuai.dao.TradeDao">
+
+    <select id="findAll" parameterType="map" resultType="com.lushuai.vo.VTradeInfo">
+        SELECT createTime,
+        case when money>0 then money end income,
+        case when money &lt; 0 then ABS(money) end pay,
+        consumeType,comment,balance
+        from t_trade
+        <where>
+            <if test="beginTime != null">
+                DATE_FORMAT(createTime,'%Y-%m-%d') >= DATE_FORMAT(#{beginTime},'%Y-%m-%d')
+            </if>
+            <if test="endTime != null">
+                and DATE_FORMAT(createTime,'%Y-%m-%d') &lt;= DATE_FORMAT(#{endTime},'%Y-%m-%d')
+            </if>
+        </where>
+
+    </select>
+</mapper>
