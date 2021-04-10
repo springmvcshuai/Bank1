@@ -24,6 +24,7 @@ public class TradeController {
     public JsonResult listTradeInfo(@DateTimeFormat(pattern = "yyyy-MM-dd") Date beginTime, @DateTimeFormat(pattern = "yyyy-MM-dd") Date endTime){
         List<VTradeInfo> list = tradeService.findAllTrades(beginTime, endTime);
         JsonResult result = new JsonResult(1, list);
+        System.out.println("yiadd  no commit");
         return result;
     }
 }
