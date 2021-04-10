@@ -25,7 +25,7 @@ public class UploadController {
         try {
             upfile.transferTo(newFile);
         } catch (IOException e) {
-            System.out.println("testgit");
+           // System.out.println("testgit");
             e.printStackTrace();
         }
         return "redirect:/success.html";
